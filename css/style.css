@@ -1,0 +1,17 @@
+body {
+	background-color: gray;
+}
+
+#form h1{
+	font-family: Comic Sans MS;
+	
+}
+
+#form input{
+	border-radius: 50px;
+}
+
+#form button{
+    font-family: Comic Sans MS;
+    border-radius: 50px;
+}
