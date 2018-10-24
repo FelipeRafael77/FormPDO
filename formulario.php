@@ -6,6 +6,7 @@
 	
 	<body>
 
+<form action="conexao.php" method="POST">
 		<div id="form">
 
 			<h1>Dados Pessoais</h1>
@@ -17,14 +18,13 @@
 			Profissão: <input type="text" name="prof"></input><br><br>
 
 
-			<button type="submit" name="btn-enviar" value="">Enviar</button><input type="reset" name="btn-apagar" value="Limpar Campos"></input>
+</div>
 
+<table>
+	<td>
+		<input type="submit" name="enviar" value="Enviar"></td><td><input type="reset" name="enviar" value="Limpar Campos"></td></table>
 
-		</div>
-
-
-
-
+</form>
 	</body>
 
 	<script src="js/model.js"></script>
