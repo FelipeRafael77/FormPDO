@@ -1,24 +1,63 @@
 <?php
 
-$nome = $_POST['nome'];
-$idade = $_POST['idade'];
-$estado_civil = $_POST['ec'];
-$data_nascimento = $_POST['dn'];
-$profissao = $_POST['prof'];
+include 'pessoa.php';
+
 
 $conexao = new PDO("mysql:host=localhost; dbname=formulario", "root", "");
 
+$pessoa = new Pessoa();
+
+$pessoa->setNome($_POST["nome"]);
+$pessoa->setIdade($_POST["idade"]);
+$pessoa->setEstadoCivil($_POST["ec"]);
+$pessoa->setDataNascimento($_POST["dn"]);
+$pessoa->setProfissao($_POST["prof"]);
+
+class Singleton {
+   public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
+
+    protected function __construct()
+    {
+    }
+     
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
+    }
+}
+
+class SingletonChild extends Singleton
+{
+}
+
+$obj = Singleton::getInstance();
+var_dump($obj === Singleton::getInstance());
+
+$anotherObj = SingletonChild::getInstance();
+var_dump($anotherObj === Singleton::getInstance());
+
+var_dump($anotherObj === SingletonChild::getInstance());
+
+
 try {
 
-    $date = strtotime($data_nascimento);
-    $data_formatada = date('Y/m/d', $date);
-
         $stmt = $conexao->prepare("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
-        $stmt->bindParam(":nome", $nome, PDO::PARAM_STR);
-        $stmt->bindParam(":idade", $idade, PDO::PARAM_STR);
-        $stmt->bindParam(":estado_civil", $estado_civil, PDO::PARAM_STR);
-        $stmt->bindParam(":data_nascimento", $data_formatada);
-        $stmt->bindParam(":profissao", $profissao, PDO::PARAM_STR);
+        $stmt->bindValue(":nome", $pessoa->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(":idade", $pessoa->getIdade(), PDO::PARAM_STR);
+        $stmt->bindValue(":estado_civil", $pessoa->getEstadoCivil(), PDO::PARAM_STR);
+        $stmt->bindValue(":data_nascimento", $pessoa->getDataNascimento());
+        $stmt->bindValue(":profissao", $pessoa->getProfissao(), PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             if ($stmt->rowCount() > 0) {

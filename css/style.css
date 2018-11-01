@@ -2,16 +2,12 @@ body {
 	background-color: gray;
 }
 
-#form h1{
+form{
 	font-family: Comic Sans MS;
+	text-align: center;
 	
 }
 
-#form input{
+form input{
 	border-radius: 50px;
-}
-
-#form button{
-    font-family: Comic Sans MS;
-    border-radius: 50px;
 }
