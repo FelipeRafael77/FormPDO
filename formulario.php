@@ -6,7 +6,7 @@
 	
 	<body>
 
-<form action="conexao.php" method="POST">
+<form action="pessoa.php" method="POST">
 		<div id="form">
 
 			<h1>Dados Pessoais</h1>

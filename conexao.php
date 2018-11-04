@@ -1,82 +1,60 @@
 <?php
 
-include 'pessoa.php';
-
+include_once 'pessoa.php';
 
 $conexao = new PDO("mysql:host=localhost; dbname=formulario", "root", "");
 
-$pessoa = new Pessoa();
+if (isset($_GET['acao'])){
+$acao = $_GET['acao'];
 
-$pessoa->setNome($_POST["nome"]);
-$pessoa->setIdade($_POST["idade"]);
-$pessoa->setEstadoCivil($_POST["ec"]);
-$pessoa->setDataNascimento($_POST["dn"]);
-$pessoa->setProfissao($_POST["prof"]);
-
-class Singleton {
-   public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
-
-    protected function __construct()
-    {
-    }
-     
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
-    }
-}
-
-class SingletonChild extends Singleton
-{
-}
-
-$obj = Singleton::getInstance();
-var_dump($obj === Singleton::getInstance());
-
-$anotherObj = SingletonChild::getInstance();
-var_dump($anotherObj === Singleton::getInstance());
-
-var_dump($anotherObj === SingletonChild::getInstance());
-
-
-try {
-
-        $stmt = $conexao->prepare("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
-        $stmt->bindValue(":nome", $pessoa->getNome(), PDO::PARAM_STR);
-        $stmt->bindValue(":idade", $pessoa->getIdade(), PDO::PARAM_STR);
-        $stmt->bindValue(":estado_civil", $pessoa->getEstadoCivil(), PDO::PARAM_STR);
-        $stmt->bindValue(":data_nascimento", $pessoa->getDataNascimento());
-        $stmt->bindValue(":profissao", $pessoa->getProfissao(), PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            if ($stmt->rowCount() > 0) {
-                echo "Dados cadastrados com sucesso!";
-                $id = null;
-                $nome = null;
-                $idade = null;
-                $estado_civil = null;
-                $data_nascimento = null;
-                $profissao = null;
-            } else {
-                echo "Erro no cadastro";
+// Verifica qual formulario foi submetido
+    switch($acao) {
+        //se for setProduto
+        case "inserePessoa":{
+            $pessoa1 = new Pessoa;
+            $pessoa1->nome = $_POST['nome'];
+            $pessoa1->idade = $_POST['idade'];
+            $pessoa1->estado_civil = $_POST['ec'];
+            $pessoa1->data_nascimento = $_POST['dn'];
+            $pessoa1->profissao = $_POST['prof'];
+            $pessoa1->inserePessoa();
             }
-        } else {
-               throw new PDOException("Erro: Não foi possível executar o sql");
-        }
-    } catch (PDOException $erro) {
-        echo "Erro: " . $erro->getMessage();
+            break;
     }
+
+class Conexao {
+
+    public static $conexao;
+    public $dbh;
+
+    public static function Singleton(){
+        if(self::$conexao === null){
+            $class = __CLASS__;
+            self::$conexao = new Conexao("root", "", "localhost", "formulario");
+        }
+
+        return self::$conexao;
+    }
+
+    private function __construct($usuario, $senha, $host, $banco){
+
+        $dsn = "mysql:dbname=$banco;host=$host";
+        try{
+            $this->dbh = new \PDO($dsn,$usuario,$senha);
+        }catch(\PDOException $e){
+            die($e->getMessage()); 
+
+        }
+    }
+
+    public function getStmt($sql){
+        return $this->dbh->prepare($sql);
+    }
+
+   }
+
+
+
 
 
 ?>
