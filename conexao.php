@@ -50,7 +50,7 @@ class Conexao {
         return $this->dbh->prepare($sql);
     }
 
-   }
+}
 
 
 
