@@ -6,7 +6,7 @@
 	
 	<body>
 
-<form action="pessoa.php" method="POST">
+<form action="controllerform.php" method="POST">
 		<div id="form">
 
 			<h1>Dados Pessoais</h1>
@@ -19,6 +19,22 @@
 
 
 </div>
+
+<table>
+	<thead>
+		<th>idPessoa</th>
+		<th>nome</th>
+		<th>idade</th>
+		<th>estado_civil</th>
+		<th>data_nascimento</th>
+		<th>profissao</th>
+	</thead>
+	<tr>
+		<td>
+			
+		</td>
+	</tr>
+</table>
 
 <table>
 	<td>

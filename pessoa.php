@@ -1,5 +1,7 @@
 <?php
 
+include_once 'conexao.php';
+
 class Pessoa{
 	
 	private $id;
@@ -8,7 +10,11 @@ class Pessoa{
 	private $estado_civil;
 	private $data_nascimento;
 	private $profissao;
+	private $conexao;
 
+public function __construct(){
+	$this->conexao = Conexao::Singleton();
+}
 
 	public function setId($id){
 		$this->id = $id;
@@ -61,14 +67,12 @@ class Pessoa{
 public function inserePessoa(){
 	
 try {
-
-        $stmt = $conexao->prepare("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
+        $stmt = $this->conexao->getStmt("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
         $stmt->bindValue(":nome", $this->nome, PDO::PARAM_STR);
         $stmt->bindValue(":idade", $this->idade, PDO::PARAM_STR);
         $stmt->bindValue(":estado_civil", $this->estado_civil, PDO::PARAM_STR);
         $stmt->bindValue(":data_nascimento", $this->data_nascimento);
         $stmt->bindValue(":profissao", $this->profissao, PDO::PARAM_STR);
-
         if ($stmt->execute()) {
             if ($stmt->rowCount() > 0) {
                 echo "Dados cadastrados com sucesso!";
@@ -89,7 +93,11 @@ try {
     }
 }
 
+public function listarPessoa(){
+	
 }
+}
+	
 
 
 ?>

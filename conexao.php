@@ -1,15 +1,11 @@
 <?php
 
-include_once 'pessoa.php';
-
-$conexao = new PDO("mysql:host=localhost; dbname=formulario", "root", "");
-
-if (isset($_GET['acao'])){
+/*if (isset($_GET['acao'])){
 $acao = $_GET['acao'];
 
 // Verifica qual formulario foi submetido
     switch($acao) {
-        //se for setProduto
+        //se f
         case "inserePessoa":{
             $pessoa1 = new Pessoa;
             $pessoa1->nome = $_POST['nome'];
@@ -21,6 +17,7 @@ $acao = $_GET['acao'];
             }
             break;
     }
+}*/
 
 class Conexao {
 
@@ -37,6 +34,8 @@ class Conexao {
     }
 
     private function __construct($usuario, $senha, $host, $banco){
+
+        $conexao = new PDO("mysql:host=localhost; dbname=formulario", "root", "");
 
         $dsn = "mysql:dbname=$banco;host=$host";
         try{
