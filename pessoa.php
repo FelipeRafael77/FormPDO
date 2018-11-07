@@ -67,15 +67,20 @@ class Pessoa{
 	public function inserePessoa(){
 		
 		try {
+
+			$date = strtotime($data_nascimento);
+            $data_formatada = date('Y/m/d', $date);
+			
 			$stmt = $this->conexao->getStmt("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
 			$stmt->bindValue(":nome", $this->nome, PDO::PARAM_STR);
 			$stmt->bindValue(":idade", $this->idade, PDO::PARAM_STR);
 			$stmt->bindValue(":estado_civil", $this->estado_civil, PDO::PARAM_STR);
-			$stmt->bindValue(":data_nascimento", $this->data_nascimento);
+			$stmt->bindValue(":data_nascimento", $data_formatada);
 			$stmt->bindValue(":profissao", $this->profissao, PDO::PARAM_STR);
 			if ($stmt->execute()) {
 				if ($stmt->rowCount() > 0) {
-					echo "Dados cadastrados com sucesso!";
+					echo "<script>alert('Dados inseridos com sucesso!');</script>";
+					header('Location: controllerform.php');
 					$id = null;
 					$nome = null;
 					$idade = null;
@@ -83,7 +88,8 @@ class Pessoa{
 					$data_nascimento = null;
 					$profissao = null;
 				} else {
-					echo "Erro no cadastro";
+					echo "<script>alert('Erro no cadastro!');</script>";
+					header('Location: controllerform.php');
 				}
 			} else {
 				throw new PDOException("Erro: Não foi possível executar o sql");
@@ -101,6 +107,15 @@ class Pessoa{
 		}
 
 
+	}
+
+	public function deletaPessoa($id){
+		$sql = $this->conexao->getStmt("DELETE FROM pessoa WHERE idPessoa= ".$id);
+		if($sql->execute()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

@@ -1,18 +1,17 @@
 body {
-	background-color: gray;
 }
 
 form{
-	font-family: Comic Sans MS;
+	font-family: inherit;
 	text-align: center;
 	
 }
 
 form input{
-	border-radius: 50px;
-}
+	text-align: center;
+	}
 
 footer{
 	text-align: center;
-    font-family: Comic Sans MS;
+    font-family: inherit;
 }
