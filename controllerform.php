@@ -19,20 +19,22 @@ if(!empty($_POST['nome'])){
 }else{
 	if(@$_GET['acao'] == 'excluir'){
 
-   if($pessoa->deletaPessoa($_GET['id'])){
-   	echo "<script>alert('Dado excluído com sucesso!');</script>";
-   	header('Location: controllerform.php');
-   
-   } else {
-   	echo "<script>alert('Erro na exclusão!');</script>";
-   	header('Location: controllerform.php');
-   }
+		if($pessoa->deletaPessoa($_GET['id'])){
+			echo "<script>alert('Dado excluído com sucesso!');</script>";
+			header('Location: controllerform.php');
+			
+		} else {
+			echo "<script>alert('Erro na exclusão!');</script>";
+			header('Location: controllerform.php');
+		}
 
 
-}
+	}
 	$listPessoas=$pessoa->listarPessoa();
 	include 'formulario.php';
 }
+
+
 
 
 ?>

@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/model.js"></script>
+	<script src="js/ajax.js"></script>
+	
 	
 	
 	<body>
@@ -28,20 +32,45 @@
 
 			<br><table class="table table-striped">
 				<thead>
-					<th>idPessoa</th>
-					<th>nome</th>
-					<th>idade</th>
-					<th>estado_civil</th>
-					<th>data_nascimento</th>
-					<th>profissao</th>
+					<th>id</th>
+					<th>Nome</th>
+					<th>Idade</th>
+					<th>Estado Civil</th>
+					<th>Data de Nascimento</th>
+					<th>Profissão</th>
 					<th>Excluir</th>
 				</thead>
 				<?php
 				foreach ($listPessoas as $key) {
-					echo "<tr><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'>Excluir</a></td></tr>";
+					echo "<tr disabled><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'>Excluir</a><td><a href='controllerform.php' onclick = 'alteraPessoa();'".$key['idPessoa']."'>Alterar</a></td></tr>";
 				}
 				?>
 			</table>
+			
+			<script type="text/javascript">
+				$(function () {
+					$("td").dblclick(function () {
+						var conteudoOriginal = $(this).text();
+
+						$(this).addClass("celulaEmEdicao");
+						$(this).html("<input type='text' value='" + conteudoOriginal + "' />");
+						$(this).children().first().focus();
+
+						$(this).children().first().keypress(function (e) {
+							if (e.which == 13) {
+								var novoConteudo = $(this).val();
+								$(this).parent().text(novoConteudo);
+								$(this).parent().removeClass("celulaEmEdicao");
+							}
+						});
+
+						$(this).children().first().blur(function(){
+							$(this).parent().text(conteudoOriginal);
+							$(this).parent().removeClass("celulaEmEdicao");
+						});
+					});
+				});
+			</script>
 
 			</form>
 
@@ -53,6 +82,6 @@
 
 				</body>
 
-				<script src="js/model.js"></script>
+				
 
 			</head>

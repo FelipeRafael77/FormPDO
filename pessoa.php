@@ -69,7 +69,7 @@ class Pessoa{
 		try {
 
 			$date = strtotime($data_nascimento);
-            $data_formatada = date('Y/m/d', $date);
+			$data_formatada = date('Y/m/d', $date);
 			
 			$stmt = $this->conexao->getStmt("INSERT INTO pessoa (nome, idade, estado_civil, data_nascimento, profissao) VALUES (:nome,:idade,:estado_civil,:data_nascimento,:profissao)");
 			$stmt->bindValue(":nome", $this->nome, PDO::PARAM_STR);
