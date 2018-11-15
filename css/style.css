@@ -2,7 +2,7 @@ body {
 }
 
 form{
-	font-family: inherit;
+	font-family: Comic Sans MS;
 	text-align: center;
 	
 }
@@ -13,5 +13,10 @@ form input{
 
 footer{
 	text-align: center;
-	font-family: inherit;
+	font-family: Comic Sans MS;
 }
+
+th{
+	text-align: center;
+}
+
