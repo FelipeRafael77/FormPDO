@@ -30,7 +30,7 @@
 
 			<table>
 				<td>
-					<input class="btn btn-dark" type="submit" name="enviar" value="Enviar"></td><td>&nbsp;<input class="btn btn-secondary" type="reset" name="enviar" value="Limpar Campos"></td></table>
+					<input class="btn btn-dark" type="submit" name="enviar" value="Enviar"></td><td>&nbsp;<input class="btn btn-secondary" type="reset" name="enviar" value="Limpar Campos"><input class="btn btn-dark" type="submit" name="logout" value="Logout" onclick="encerrarSessao()"></td></table>
 
 			<br><table class="table table-striped">
 				<thead>
@@ -45,35 +45,10 @@
 				</thead>
 				<?php
 				foreach ($listPessoas as $key) {
-					echo "<tr disabled><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a class='glyphicon glyphicon-trash' href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='#'".$key['idPessoa']."'></td></tr>";
+					echo "<tr onclick='cliqueDuplo()'><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a class='glyphicon glyphicon-trash' href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='#'".$key['idPessoa']."'></td></tr>";
 				}
 				?>
 			</table>
-			
-			<script type="text/javascript">
-				$(function () {
-					$("td").dblclick(function () {
-						var conteudo = $(this).text();
-
-						$(this).addClass("celulaEmEdicao");
-						$(this).html("<input type='text' value='" + conteudo + "' />");
-						$(this).children().first().focus();
-
-						$(this).children().first().keypress(function (e) {
-							if (e.which == 13) {
-								var novoConteudo = $(this).val();
-								$(this).parent().text(novoConteudo);
-								$(this).parent().removeClass("celulaEmEdicao");
-							}
-						});
-
-						$(this).children().first().blur(function(){
-							$(this).parent().text(conteudoOriginal);
-							$(this).parent().removeClass("celulaEmEdicao");
-						});
-					});
-				});
-			</script>
 
 			</form>
 

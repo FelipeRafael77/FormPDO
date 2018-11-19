@@ -1,7 +1,13 @@
 <?php
+session_start();
+if(!isset($_SESSION['login'])){
+	header('Location: login.php');
+	exit;
+}
 
 include 'pessoa.php';
 $pessoa = new Pessoa();
+
 if(!empty($_POST['nome'])){
 
 
@@ -33,8 +39,5 @@ if(!empty($_POST['nome'])){
 	$listPessoas=$pessoa->listarPessoa();
 	include 'formulario.php';
 }
-
-
-
 
 ?>
