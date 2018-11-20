@@ -28,7 +28,7 @@ function cliqueDuplo(){
 						});
 
 						$(this).children().first().blur(function(){
-							$(this).parent().text(conteudoOriginal);
+							$(this).parent().text(conteudo);
 							$(this).parent().removeClass("tabelaEditavel");
 						});
 					});
@@ -36,10 +36,10 @@ function cliqueDuplo(){
 }
 
 function encerrarSessao(){
-
-session_start();
-session_unset(); 
-session_destroy(); 
- 
-header("Location: login.php");
+if(isset($_SESSION['login'])){
+    // se você possui algum cookie relacionado com o login deve ser removido
+    session_destroy();
+    header("location: login.php");
+    exit();
+}
 }

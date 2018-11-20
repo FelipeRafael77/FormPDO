@@ -11,8 +11,6 @@ class Pessoa{
 	private $data_nascimento;
 	private $profissao;
 	private $conexao;
-	private $login;
-	private $senha;
 
 	public function __construct(){
 		$this->conexao = Conexao::Singleton();

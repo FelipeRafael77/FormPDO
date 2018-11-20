@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>Formulário de Cadastro</title>
+	<title>Formulário</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -8,7 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/model.js"></script>
-	<script src="js/ajax.js"></script>
 	
 	
 	
@@ -17,7 +16,7 @@
 		<form action="controllerform.php" method="POST">
 			<div id="form">
 
-				<h1>Formulário</h1><br>
+				<h1>Cadastro de Pessoa</h1><br>
 
 				Nome: <input class="form-control mr-sm-2" type="text" name="nome"></input><br><br>
 				Idade: <input class="form-control mr-sm-2" type="text" name="idade"></input><br><br>

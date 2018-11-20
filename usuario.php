@@ -4,11 +4,21 @@ include_once 'conexao.php';
 
 class Usuario{
 	
+	private $id;
 	private $login;
 	private $senha;
+	private $conexao;
 
 	public function __construct(){
 		$this->conexao = Conexao::Singleton();
+	}
+
+	public function setId($id){
+		$this->id = $id;
+	}
+
+	public function getId(){
+		return $this->id;
 	}
 
 	public function setLogin($login){
@@ -33,7 +43,7 @@ class Usuario{
 			
 			$stmt = $this->conexao->getStmt("INSERT INTO usuario (login, senha) VALUES (:login,:senha)");
 			$stmt->bindValue(":login", $this->login, PDO::PARAM_STR);
-			$stmt->bindValue(":senha", $this->senha, PDO::PARAM_STR);
+			$stmt->bindValue(":senha", md5($this->senha), PDO::PARAM_STR);
 			if ($stmt->execute()) {
 				if ($stmt->rowCount() > 0) {
 					echo "<script>alert('Dados inseridos com sucesso!');</script>";
@@ -54,7 +64,7 @@ class Usuario{
 
 	public function listarUsuario(){
 
-		$sql = $this->conexao->getStmt("SELECT login, senha FROM usuario");
+		$sql = $this->conexao->getStmt("SELECT id_usuario, login, senha FROM usuario");
 		if($sql->execute()){
 			return $sql->fetchAll();
 		}
@@ -63,7 +73,8 @@ class Usuario{
 	}
 
 	public function deletaUsuario($id){
-		$sql = $this->conexao->getStmt("DELETE FROM usuario WHERE login= ".$login);
+		echo $id;
+		$sql = $this->conexao->getStmt("DELETE FROM usuario WHERE id_usuario= ".$id);
 		if($sql->execute()){
 			return true;
 		}else{
