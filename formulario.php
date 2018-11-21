@@ -44,7 +44,7 @@
 				</thead>
 				<?php
 				foreach ($listPessoas as $key) {
-					echo "<tr onclick='cliqueDuplo()'><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a class='glyphicon glyphicon-trash' href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'></a><td><a class='glyphicon glyphicon-floppy-disk' id='salvar' href='updatepessoa.php' onclick='alteraPessoa()'></a></td></tr>";
+					echo "<tr onclick='cliqueDuplo()'><td>".$key['idPessoa']."</td><td>".$key['nome']."</td><td>".$key['idade']."</td><td>".$key['estado_civil']."</td><td>".$key['data_nascimento']."</td><td>".$key['profissao']."</td><td><a class='glyphicon glyphicon-trash' href='controllerform.php?acao=excluir&id=".$key['idPessoa']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='controllerform.php'></a></td></tr>";
 				}
 				?>
 			</table>

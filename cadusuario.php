@@ -33,7 +33,7 @@
 				</thead>
 				<?php
 				foreach ($listUsuario as $key) {
-					echo "<tr onclick='cliqueDuplo()'><td>".$key['id_usuario']."</td><td>".$key['login']."</td><td>".$key['senha']."</td><td><a class='glyphicon glyphicon-trash' href='controllerusuario.php?acao=excluir&id_usuario=".$key['id_usuario']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='controllerusuario.php' onclick=''></a></td></tr>";
+					echo "<tr onclick='cliqueDuplo()'><td>".$key['id_usuario']."</td><td>".$key['login']."</td><td>".$key['senha']."</td><td><a class='glyphicon glyphicon-trash' href='controllerusuario.php?acao=excluir&id_usuario=".$key['id_usuario']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='controllerusuario.php'></a></td></tr>";
 				}
 				?>
 			</table>
