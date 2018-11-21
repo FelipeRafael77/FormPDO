@@ -12,8 +12,8 @@
 </head>
 <body>
 
-    <a href="http://localhost/controllerform.php">Cadastro de Pessoa</a>
-	<a href="http://localhost/controllerusuario.php">Cadastro de Usuário</a>
+    <a class="btn btn-dark" href="http://localhost/controllerform.php">Cadastro de Pessoa</a>
+	<a class="btn btn-secondary" href="http://localhost/controllerusuario.php">Cadastro de Usuário</a>
 	
 
 	<?php

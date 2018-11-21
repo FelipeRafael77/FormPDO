@@ -51,7 +51,7 @@
 
 			</form>
 
-<footer class="footer">
+<br><footer class="footer">
       <div class="container">
         <span class="text-muted">SI - 2018</span>
       </div>
