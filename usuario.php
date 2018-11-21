@@ -73,7 +73,6 @@ class Usuario{
 	}
 
 	public function deletaUsuario($id){
-		echo $id;
 		$sql = $this->conexao->getStmt("DELETE FROM usuario WHERE id_usuario= ".$id);
 		if($sql->execute()){
 			return true;

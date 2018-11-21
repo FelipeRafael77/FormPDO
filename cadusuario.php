@@ -20,7 +20,7 @@
 		Login: <input class="form-control mr-sm-2" type="text" name="login">
 		Senha: <input class="form-control mr-sm-2" type="text" name="senha">
 
-		<br><input class="btn btn-dark" type="submit" name="enviar" value="Enviar"></td><td>&nbsp;<input class="btn btn-secondary" type="reset" name="enviar" value="Limpar Campos">&nbsp;<input class="btn btn-dark" type="submit" name="logout" value="Logout" onclick="encerrarSessao()">
+		<br><input class="btn btn-dark" type="submit" name="enviar" value="Enviar"></td><td>&nbsp;<input class="btn btn-secondary" type="reset" name="enviar" value="Limpar Campos">&nbsp;<a class="btn btn-outline-dark" href="logout.php">Logout</a>
 
 		<br><br><table class="table table-striped">
 				<thead>
@@ -28,11 +28,12 @@
 					<th>Login</th>
 					<th>Senha</th>
 					<th>Excluir</th>
+					<th>Alterar</th>
 
 				</thead>
 				<?php
 				foreach ($listUsuario as $key) {
-					echo "<tr onclick='cliqueDuplo()'><td>".$key['id_usuario']."</td><td>".$key['login']."</td><td>".$key['senha']."</td><td><a class='glyphicon glyphicon-trash' href='controllerusuario.php?acao=excluir&id_usuario=".$key['id_usuario']."'></a></td></tr>";
+					echo "<tr onclick='cliqueDuplo()'><td>".$key['id_usuario']."</td><td>".$key['login']."</td><td>".$key['senha']."</td><td><a class='glyphicon glyphicon-trash' href='controllerusuario.php?acao=excluir&id_usuario=".$key['id_usuario']."'></a><td><a class='glyphicon glyphicon-floppy-disk' href='controllerusuario.php' onclick=''></a></td></tr>";
 				}
 				?>
 			</table>
